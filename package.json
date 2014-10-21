@@ -1,0 +1,29 @@
+{
+  "name": "node-rest-webservice",
+  "version": "1.0.0",
+  "description": "A Restful WebService build with Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emmanuelgautier/node-rest-webservice.git"
+  },
+  "keywords": [
+    "nodejs",
+    "rest",
+    "mysql"
+  ],
+  "author": "Emmanuel Gautier",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/emmanuelgautier/node-rest-webservice/issues"
+  },
+  "homepage": "https://github.com/emmanuelgautier/node-rest-webservice",
+  "dependencies": {
+    "mysql": "^2.5.2",
+    "restify": "^2.8.3",
+    "sequelize": "^2.0.0-rc2"
+  }
+}
