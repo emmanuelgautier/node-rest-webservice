@@ -7,7 +7,6 @@ var authors = require('./controllers/authors'),
 module.exports = function(server) {
 
   server.get('/authors', authors.list);
-  server.get('/authors/page/:page');
   server.post('/authors', authors.create);
   server.get('/authors/:id', authors.get);
   server.put('/authors/:id', authors.update);
