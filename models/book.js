@@ -1,14 +1,12 @@
 'use strict';
 
-var Sequelize = require('sequelize');
-
 module.exports = function(sequelize, DataTypes) {
   var Book = sequelize.define('Book', {
-    title: Sequelize.STRING,
-    isbn: Sequelize.STRING,
-    published_at: Sequelize.DATE,
-    numberOfPages: Sequelize.INTEGER,
-    cover: Sequelize.STRING
+    title: DataTypes.STRING,
+    isbn: DataTypes.STRING,
+    published_at: DataTypes.DATE,
+    numberOfPages: DataTypes.INTEGER,
+    cover: DataTypes.STRING
   }, {
     tableName: 'book',
     associate: function(models) {
