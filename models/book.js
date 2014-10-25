@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     isbn: DataTypes.STRING,
     published_at: DataTypes.DATE,
-    numberOfPages: DataTypes.INTEGER,
+    number_pages: DataTypes.INTEGER,
     cover: DataTypes.STRING
   }, {
     tableName: 'book',
