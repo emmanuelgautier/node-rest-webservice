@@ -7,6 +7,13 @@ var fs        = require('fs'),
     sequelize = new Sequelize(config.db.name, config.db.username, config.db.password, {
       dialect: config.db.dialect,
       port: config.db.port,
+      logging: false,
+      native: true,
+      define: {
+        underscored: true,
+        charset: 'utf8',
+        collate: 'utf8_general_ci',
+      }
     }),
     db        = {};
 
