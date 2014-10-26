@@ -2,13 +2,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Author = sequelize.define('Author', {
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
-    gender: DataTypes.BOOLEAN,
-    birthDate: DataTypes.DATE,
-    deathDate: DataTypes.DATE,
-    nationality: DataTypes.STRING,
-    description: DataTypes.TEXT
+    firstname:   { type: DataTypes.STRING,  allowNull: false },
+    lastname:    { type: DataTypes.STRING,  allowNull: false },
+    gender:      { type: DataTypes.BOOLEAN, allowNull: false },
+    birthDate:   { type: DataTypes.DATE,    allowNull: true  },
+    deathDate:   { type: DataTypes.DATE,    allowNull: true  },
+    nationality: { type: DataTypes.STRING,  allowNull: true  },
+    description: { type: DataTypes.TEXT,    allowNull: true  }
   }, {
     tableName: 'author',
     timestamps: false

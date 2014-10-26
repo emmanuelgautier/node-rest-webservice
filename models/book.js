@@ -2,11 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Book = sequelize.define('Book', {
-    title: DataTypes.STRING,
-    isbn: DataTypes.STRING,
-    published_at: DataTypes.DATE,
-    number_pages: DataTypes.INTEGER,
-    cover: DataTypes.STRING
+    title:        { type: DataTypes.STRING,  allowNull: false },
+    isbn:         { type: DataTypes.STRING,  allowNull: false },
+    published_at: { type: DataTypes.DATE,    allowNull: true  },
+    number_pages: { type: DataTypes.INTEGER, allowNull: true  },
+    cover:        { type: DataTypes.STRING,  allowNull: true  }
   }, {
     tableName: 'book',
     associate: function(models) {

@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Editor = sequelize.define('Editor', {
-      name: DataTypes.STRING
+      name: { type: DataTypes.STRING, allowNull: false }
     }, {
       tableName: 'editor',
       timestamps: false,
