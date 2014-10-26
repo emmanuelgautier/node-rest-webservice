@@ -1,25 +1,53 @@
 'use strict';
 
-exports.list = function(req, res, next) {
+var db = require(__dirname + '/../config/db');
 
+exports.list = function(req, res, next) {
+  db.Editor.findAll().success(function(editors) {
+    res.send(editors);
+
+    return next();
+  }).error(function(err) {
+    return next(err);
+  });
 };
 
 exports.get = function(req, res, next) {
+  db.Editor.find(req.params.id).success(function(editor) {
+    res.send(editor);
 
-};
-
-exports.query = function(req, res, next) {
-
+    return next();
+  }).error(function(err) {
+    return next(err)
+  });
 };
 
 exports.create = function(req, res, next) {
+  db.Editor.create(req.body).success(function(editor) {
+    res.send(editor);
 
+    return next();
+  }).error(function(err) {
+    return next(err);
+  });
 };
 
 exports.update = function(req, res, next) {
+  db.Editor.update(req.body, { where: { id: req.params.id } }).success(function(editor) {
+    res.send(editor);
 
+    return next();
+  }).error(function(err) {
+    return next(err);
+  });
 };
 
 exports.delete = function(req, res, next) {
+  db.Editor.destroy({ where: { id: req.params.id } }).success(function(editor) {
+    res.send(editor);
 
+    return next();
+  }).error(function(err) {
+    return next(err);
+  });
 };

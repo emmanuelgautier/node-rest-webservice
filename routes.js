@@ -1,8 +1,10 @@
 'use strict';
 
-var authors = require('./controllers/authors'),
-    books   = require('./controllers/books'),
-    editors = require('./controllers/editors');
+var config    = require(__dirname + '/config/config'),
+
+    authors = require(config.controllers.path + '/authors'),
+    books   = require(config.controllers.path + '/books'),
+    editors = require(config.controllers.path + '/editors');
 
 module.exports = function(server) {
 

@@ -19,6 +19,9 @@ var config = {
     dialect: 'mysql',
     port: 3306
   },
+  controllers: {
+    path: rootPath + '/controllers'
+  },
   models: {
     path: rootPath + '/models'
   }
