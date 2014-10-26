@@ -17,6 +17,7 @@ module.exports = function(server) {
   server.get('/authors/:id/books', books.listByAuthor);
   server.get('/editors/:id/books', books.listByEditor);
 
+  server.get('/books', books.list);
   server.post('/books', books.create);
   server.get('/books/:id', books.get);
   server.put('/books/:id', books.update);

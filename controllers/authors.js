@@ -3,7 +3,7 @@
 var db = require(__dirname + '/../config/db');
 
 exports.list = function(req, res, next) {
-  db.Author.findAll().success(function(authors) {
+  db.Author.findAll({ where: req.query }).success(function(authors) {
     res.send(authors);
 
     return next();
@@ -14,7 +14,7 @@ exports.list = function(req, res, next) {
 
 exports.get = function(req, res, next) {
   db.Author.find(req.params.id).success(function(author) {
-    res.send(author);
+    res.send(201, author);
 
     return next();
   }).error(function(err) {
@@ -24,7 +24,7 @@ exports.get = function(req, res, next) {
 
 exports.create = function(req, res, next) {
   db.Author.create(req.body).success(function(author) {
-    res.send(author);
+    res.send(201, author);
 
     return next();
   }).error(function(err) {

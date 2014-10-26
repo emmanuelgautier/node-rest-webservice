@@ -3,7 +3,7 @@
 var db = require(__dirname + '/../config/db');
 
 exports.list = function(req, res, next) {
-  db.Editor.findAll().success(function(editors) {
+  db.Editor.findAll({ where: req.query }).success(function(editors) {
     res.send(editors);
 
     return next();
@@ -24,7 +24,7 @@ exports.get = function(req, res, next) {
 
 exports.create = function(req, res, next) {
   db.Editor.create(req.body).success(function(editor) {
-    res.send(editor);
+    res.send(201, editor);
 
     return next();
   }).error(function(err) {
