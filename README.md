@@ -5,14 +5,26 @@ A Restful WebService build with Node.js
 
 ## Getting started
 
+Install mysql if it is not installed
+```
+sudo apt-get install mysql-server mysql-client
+```
+
 Clone the rep
 ```
 git clone git://github.com/emmanuelgautier/node-rest-webservice.git
 ```
 
-Install packages and start server
+Install packages
 ```
 npm install && node app.js
+```
+
+Configure this [file](config/config.js)
+
+Finally, start the server and enjoy !
+```
+node app.js
 ```
 
 ## Documentation
