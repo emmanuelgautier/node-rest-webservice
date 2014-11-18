@@ -17,7 +17,7 @@ git clone git://github.com/emmanuelgautier/node-rest-webservice.git
 
 Install packages
 ```
-npm install && node app.js
+npm install
 ```
 
 Configure this [file](config/config.js)
