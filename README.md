@@ -61,6 +61,6 @@ Code | Message
 404  | ResourceNotFoundError
 500  | InternalError
 
-## Copyright and license
+## License
 
 [GNU GPL version 2](LICENSE).
