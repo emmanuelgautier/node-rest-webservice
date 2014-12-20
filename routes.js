@@ -1,6 +1,6 @@
 'use strict';
 
-var config    = require(__dirname + '/config/config'),
+var config  = require(__dirname + '/config/config'),
 
     authors = require(config.controllers.path + '/authors'),
     books   = require(config.controllers.path + '/books'),

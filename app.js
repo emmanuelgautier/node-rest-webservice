@@ -3,9 +3,7 @@
 var config  = require(__dirname + '/config/config'),
 
     restify = require('restify'),
-    server  = restify.createServer({
-      name: config.server.name
-    }),
+    server  = restify.createServer(config.server),
 
     db     = require(config.root + '/config/db');
 
