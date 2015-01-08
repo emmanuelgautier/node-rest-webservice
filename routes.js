@@ -1,10 +1,14 @@
 'use strict';
 
-var config  = require(__dirname + '/config/config'),
+var config    = require(__dirname + '/config/config'),
 
-    authors = require(config.controllers.path + '/authors'),
-    books   = require(config.controllers.path + '/books'),
-    editors = require(config.controllers.path + '/editors');
+    passport  = require('passport'),
+
+    authors   = require(config.controllers.path + '/authors'),
+    books     = require(config.controllers.path + '/books'),
+    editors   = require(config.controllers.path + '/editors'),
+
+    oauth2    = require(config.controllers.path + '/oauth2');
 
 module.exports = function(server) {
 
@@ -29,4 +33,7 @@ module.exports = function(server) {
   server.put('/editors/:id', editors.update);
   server.del('/editors/:id', editors.delete);
 
+  server.get('/dialog/authorize', oauth2.authorize);
+  server.post('/dialog/authorize/decision', oauth2.decision);
+  server.post('/token', passport.authenticate('bearer', { session: false }), oauth2.token);
 };

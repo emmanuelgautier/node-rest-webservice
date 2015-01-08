@@ -8,6 +8,8 @@ var config  = require(__dirname + '/config/config'),
     db     = require(config.root + '/config/db');
 
 require(config.root + '/config/server')(server);
+require(config.root + '/config/oauth2orize');
+
 require(config.root + '/routes')(server);
 
 db.sequelize.sync().success(function() {
