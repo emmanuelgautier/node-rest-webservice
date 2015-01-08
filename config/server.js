@@ -17,7 +17,7 @@ module.exports = function(server) {
   }));
 
   server.use(sessions({
-    cookieName: 'sid',
+    cookieName: 'session',
     secret: 'key',
     duration: 24 * 60 * 60 * 1000,
     activeDuration: 1000 * 60 * 5
