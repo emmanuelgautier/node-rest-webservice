@@ -66,11 +66,11 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, do
   });
 }));
 
-passport.serializeUser(function(user, done) {
+server.serializeClient(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+server.deserializeClient(function(id, done) {
   db.User.find(id).success(function(user) {
     done(null, user);
   }).error(function(err) {
