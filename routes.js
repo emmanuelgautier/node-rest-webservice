@@ -35,5 +35,6 @@ module.exports = function(server) {
 
   server.get('/dialog/authorize', oauth2.authorize);
   server.post('/dialog/authorize/decision', oauth2.decision);
-  server.post('/token', passport.authenticate('bearer', { session: false }), oauth2.token);
+  server.post('/access_token', passport.authenticate('bearer', { session: false }), oauth2.token);
+
 };

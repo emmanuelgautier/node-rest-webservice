@@ -5,15 +5,15 @@ var oauth2orize = require(__dirname + '/../config/oauth2orize'),
     db          = require(__dirname + '/../config/db');
 
 exports.authorize = [
-  oauth2orize.authorize(function(clientID, redirectURI, done) {
-    db.Client.find(clientID).success(function(client) {
+  oauth2orize.authorize(function(clientId, redirectUri, done) {
+    db.Client.find(clientId).success(function(client) {
       if (!client)
         return done(null, false);
 
-      if (!client.redirectUri != redirectURI)
+      if (client.redirectUri != redirectUri)
         return done(null, false);
 
-      done(null, client, client.redirectURI);
+      done(null, client, client.redirectUri);
     }).error(function(err) {
       done(err);
     });
