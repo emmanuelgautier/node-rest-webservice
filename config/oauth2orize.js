@@ -66,15 +66,15 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, do
   });
 }));
 
-server.serializeClient(function(user, done) {
-  done(null, user.id);
+server.serializeClient(function(client, done) {
+  done(null, client.id);
 });
 
 server.deserializeClient(function(id, done) {
-  db.User.find(id).success(function(user) {
-    done(null, user);
+  db.Client.find(id).success(function(client) {
+    done(null, client);
   }).error(function(err) {
-    done(err, false);
+    done(err);
   });
 });
 
