@@ -13,9 +13,9 @@ exports.authorize = [
       if (!client.redirectUri != redirectURI)
         return done(null, false);
 
-      return done(null, client, client.redirectURI);
+      done(null, client, client.redirectURI);
     }).error(function(err) {
-      return done(err);
+      done(err);
     });
   }),
   function(req, res) {

@@ -13,9 +13,9 @@ passport.use(new BearerStrategy(function(token, done) {
     if(!user)
       return done(null, false);
 
-    return done(null, user, { scope: 'read' });
+    done(null, user, { scope: 'read' });
   }).error(function(err) {
-    return done(new restify.InternalError(err.message));
+    done(new restify.InternalError(err.message));
   });
 }));
 
@@ -62,7 +62,7 @@ server.exchange(oauth2orize.exchange.code(function(client, code, redirectUri, do
       done(err);
     });
   }).error(function(err) {
-    return done(err);
+    done(err);
   });
 }));
 
@@ -72,9 +72,9 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   db.User.find(id).success(function(user) {
-    return done(null, user);
+    done(null, user);
   }).error(function(err) {
-    return done(err, false);
+    done(err, false);
   });
 });
 
