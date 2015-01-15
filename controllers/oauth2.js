@@ -1,6 +1,8 @@
 'use strict';
 
-var oauth2orize = require(__dirname + '/../config/oauth2orize'),
+var URL         = require('url'),
+
+    oauth2orize = require(__dirname + '/../config/oauth2orize'),
 
     db          = require(__dirname + '/../config/db');
 
@@ -19,11 +21,20 @@ exports.authorize = [
     });
   }),
   function(req, res) {
-    res.render('dialog', {
-      transactionID: req.oauth2.transactionID,
-      user: req.user,
-      client: req.oauth2.client
-    });
+    var redirectURI = URL.parse(req.oauth2.req.redirectURI);
+
+    if(redirectURI.search) {
+      redirectURI.search += '&';
+    } else {
+      redirectURI.search = '?';
+    }
+
+    redirectURI.search += 'code=' + req.oauth2.transactionID;
+
+    redirectURI = URL.format(redirectURI);
+
+    res.header('location', redirectURI);
+    res.send(301);
   }
 ];
 
