@@ -33,8 +33,7 @@ module.exports = function(server) {
   server.put('/editors/:id',        editors.update);
   server.del('/editors/:id',        editors.delete);
 
-  server.get('/dialog/authorize', oauth2.authorize);
-  server.post('/dialog/authorize/decision', oauth2.decision);
-  server.post('/access_token', passport.authenticate('bearer', { session: false }), oauth2.token);
+  server.get('/oauth2/authorize', oauth2.authorize);
+  server.get('/oauth2/token',     passport.authenticate('bearer', { session: false }), oauth2.token);
 
 };
