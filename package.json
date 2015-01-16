@@ -27,6 +27,7 @@
     "oauth2orize": "^1.0.1",
     "passport": "^0.2.1",
     "passport-http-bearer": "^1.0.1",
+    "passport-oauth2-jwt-bearer": "^0.1.1",
     "restify": "^2.8.3",
     "sequelize": "^2.0.0-rc2"
   }

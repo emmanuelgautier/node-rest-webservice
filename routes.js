@@ -33,7 +33,6 @@ module.exports = function(server) {
   server.put('/editors/:id',        editors.update);
   server.del('/editors/:id',        editors.delete);
 
-  server.get('/oauth2/authorize', oauth2.authorize);
-  server.get('/oauth2/token',     passport.authenticate('bearer', { session: false }), oauth2.token);
+  server.get('/oauth/token',     passport.authenticate('oauth2-jwt-bearer', { session: false }), oauth2.token);
 
 };
