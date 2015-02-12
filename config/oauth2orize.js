@@ -3,11 +3,10 @@
 var passport                = require('passport'),
     oauth2orize             = require('oauth2orize'),
     BearerStrategy          = require('passport-http-bearer').Strategy,
-    ClientJWTBearerStrategy = require('passport-oauth2-jwt-bearer').Strategy,
 
-    db                      = require(__dirname + '/../config/db'),
+    db = require(__dirname + '/../config/db'),
 
-    server                  = oauth2orize.createServer();
+    server = oauth2orize.createServer();
 
 passport.use(new BearerStrategy(function(token, done) {
   db.User.find({ where: { token: token } }).success(function(user) {
@@ -17,18 +16,6 @@ passport.use(new BearerStrategy(function(token, done) {
     done(null, user, { scope: 'read' });
   }).error(function(err) {
     done(new restify.InternalError(err.message));
-  });
-}));
-
-passport.use(new ClientJWTBearerStrategy(function(claimSetIss, done) {
-  db.User.find(claimSetIss).success(function(user) {
-    if(!user) {
-      return done(null, false);
-    }
-
-    done(null, user);
-  }).error(function(err) {
-    done(err);
   });
 }));
 
