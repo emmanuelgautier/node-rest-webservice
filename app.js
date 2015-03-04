@@ -12,7 +12,7 @@ require(config.root + '/config/oauth2orize');
 
 require(config.root + '/routes')(server);
 
-db.sequelize.sync().success(function() {
+db.sequelize.sync().then(function() {
   server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
   });
