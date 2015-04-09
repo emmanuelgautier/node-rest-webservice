@@ -33,4 +33,7 @@ module.exports = function(server) {
   server.put('/editors/:id',        editors.update);
   server.del('/editors/:id',        editors.delete);
 
+  //server.post('/oauth/jwt/authorize', oauth2.jwt.authorize);
+  //server.post('/oauth/jwt/token',     oauth2.jwt.token);
+
 };
