@@ -12,6 +12,7 @@
   },
   "keywords": [
     "nodejs",
+    "hapi",
     "rest",
     "mysql"
   ],
@@ -22,14 +23,10 @@
   },
   "homepage": "https://github.com/emmanuelgautier/node-rest-webservice",
   "dependencies": {
-    "client-sessions": "^0.7.0",
-    "connect-ensure-login": "^0.1.1",
+    "boom": "^2.7.1",
+    "hapi": "^8.4.0",
+    "joi": "^6.2.0",
     "mysql": "^2.5.2",
-    "oauth2orize": "^1.0.1",
-    "passport": "^0.2.1",
-    "passport-http-bearer": "^1.0.1",
-    "restify": "^2.8.3",
-    "sequelize": "^2.0.3",
-    "uid2": "0.0.3"
+    "sequelize": "^2.0.3"
   }
 }

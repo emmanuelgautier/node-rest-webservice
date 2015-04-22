@@ -1,79 +1,74 @@
 'use strict';
 
-var restify = require('restify'),
-    db      = require(__dirname + '/../config/db');
+var Boom = require('Boom'),
+    Joi = require('joi');
 
-exports.listByAuthor = function(req, res, next) {
-  req.query.author = req.params.id;
+var db = require('../config/db');
 
-  return exports.list(req, res, next);
+exports.listByAuthor = function(request, reply) {
+  request.query.author = request.params.id;
+
+  return exports.list(request, reply);
 };
 
-exports.listByEditor = function(req, res, next) {
-  req.query.editor = req.params.id;
+exports.listByEditor = function(request, reply) {
+  request.query.editor = request.params.id;
 
-  return exports.list(req, res, next);
+  return exports.list(request, reply);
 };
 
-exports.list = function(req, res, next) {
+exports.list = function(request, reply) {
   db.Book.findAll({ where: req.query }).then(function(books) {
-    res.send(books);
-
-    return next();
+    reply(books);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.get = function(req, res, next) {
-  db.Book.find(req.params.id).then(function(book) {
-    if(!book)
-      return next(new restify.ResourceNotFoundError("Book " + req.params.id + " is not found"));
+exports.get = function(request, reply) {
+  db.Book.find(request.params.book).then(function(book) {
+    if(!book) {
+      return reply(Boom.notFound());
+    }
 
-    res.send(book);
-
-    return next();
+    reply(book);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.create = function(req, res, next) {
-  db.Book.create(req.body).then(function(book) {
-    res.send(201, book);
+exports.create = function(request, reply) {
+  var book = request.payload;
 
-    return next();
+  db.Book.create(book).then(function(book) {
+    reply(201, book);
   }).catch(function(err) {
-    if(err.name === 'SequelizeValidationError')
-      return next(new restify.InvalidArgumentError(err.message));
-
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.update = function(req, res, next) {
-  db.Book.update(req.body, { where: { id: req.params.id } }, { returning: true }).then(function(updated) {
-    if(!updated[0])
-      return next(new restify.ResourceNotFoundError("Book " + req.params.id + " is not found"));
+exports.update = function(request, reply) {
+  var book = request.payload;
 
-    return next();
+  db.Book.update(book, { where: { id: request.params.book } }, { returning: true }).then(function(book) {
+    if(!book[0]) {
+      return reply(Boom.notFound());
+    }
+
+    reply(book);
   }).catch(function(err) {
-    if(err.name === 'SequelizeValidationError')
-      return next(new restify.InvalidArgumentError(err.message));
-
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.delete = function(req, res, next) {
-  db.Book.destroy({ where: { id: req.params.id } }).then(function(book) {
-    if(!book)
-      return next(new restify.ResourceNotFoundError("Book " + req.params.id + " is not found"));
+exports.delete = function(request, reply) {
+  db.Book.destroy({ where: { id: request.params.book } }).then(function(book) {
+    if(!book) {
+      return reply(Boom.notFound());
+    }
 
-    res.send(book);
-
-    return next();
+    reply(book);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };

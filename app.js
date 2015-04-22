@@ -1,19 +1,22 @@
 'use strict';
 
-var config  = require(__dirname + '/config/config'),
+var Hapi    = require('hapi'),
+    config  = require('./config/config'),
 
-    restify = require('restify'),
-    server  = restify.createServer(config.server),
+    db = require('./config/db');
 
-    db     = require(config.root + '/config/db');
+var server = new Hapi.Server();
+server.connection({
+  host: config.server.host,
+  port: config.server.port
+});
 
-require(config.root + '/config/server')(server);
-require(config.root + '/config/oauth2orize');
-
-require(config.root + '/routes')(server);
+require('./config/hapi')(server, config);
+require('./config/auth')(server, config);
+require(config.paths.routes)(server, config);
 
 db.sequelize.sync().then(function() {
-  server.listen(8080, function() {
-    console.log('%s listening at %s', server.name, server.url);
+  server.start(function () {
+      console.log('Server running at:', server.info.uri);
   });
 });

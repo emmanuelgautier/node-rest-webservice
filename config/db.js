@@ -17,12 +17,12 @@ var fs        = require('fs'),
     }),
     db        = {};
 
-fs.readdirSync(config.models.path)
+fs.readdirSync(config.paths.models)
   .filter(function(file) {
     return (file.indexOf('.') !== 0) && (file !== "index.js");
   })
   .forEach(function(file) {
-    var model = sequelize['import'](path.join(config.models.path, file));
+    var model = sequelize['import'](path.join(config.paths.models, file));
     db[model.name] = model;
   });
 

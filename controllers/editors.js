@@ -1,67 +1,62 @@
 'use strict';
 
-var restify = require('restify'),
-    db      = require(__dirname + '/../config/db');
+var Boom = require('Boom'),
+    Joi = require('joi');
 
-exports.list = function(req, res, next) {
-  db.Editor.findAll({ where: req.query }).then(function(editors) {
-    res.send(editors);
+var db = require('../config/db');
 
-    return next();
+exports.list = function(request, reply) {
+  db.Editor.findAll({ where: request.query }).then(function(editors) {
+    reply(editors);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.get = function(req, res, next) {
-  db.Editor.find(req.params.id).then(function(editor) {
-    if(!editor)
-      return next(new restify.ResourceNotFoundError("Editor " + req.params.id + " is not found"));
+exports.get = function(request, reply) {
+  db.Editor.find(request.params.editor).then(function(editor) {
+    if(!editor) {
+      return reply(Boom.notFound());
+    }
 
-    res.send(editor);
-
-    return next();
+    reply(editor);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.create = function(req, res, next) {
-  db.Editor.create(req.body).then(function(editor) {
-    res.send(201, editor);
+exports.create = function(request, reply) {
+  var editor = request.payload;
 
-    return next();
+  db.Editor.create(editor).then(function(editor) {
+    reply(201, editor);
   }).catch(function(err) {
-    if(err.name === 'SequelizeValidationError')
-      return next(new restify.InvalidArgumentError(err.message));
-
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.update = function(req, res, next) {
-  db.Editor.update(req.body, { where: { id: req.params.id } }).then(function(updated) {
-    if(!updated[0])
-      return next(new restify.ResourceNotFoundError("Editor " + req.params.id + " is not found"));
+exports.update = function(request, reply) {
+  var editor = request.payload;
 
-    return next();
+  db.Editor.update(editor, { where: { id: request.params.editor } }).then(function(editor) {
+    if(!editor[0]) {
+      return reply(Boom.notFound());
+    }
+
+    reply(editor);
   }).catch(function(err) {
-    if(err.name === 'SequelizeValidationError')
-      return next(new restify.InvalidArgumentError(err.message));
-
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };
 
-exports.delete = function(req, res, next) {
-  db.Editor.destroy({ where: { id: req.params.id } }).then(function(editor) {
-    if(!editor)
-      return next(new restify.ResourceNotFoundError("Editor " + req.params.id + " is not found"));
+exports.delete = function(request, reply) {
+  db.Editor.destroy({ where: { id: request.params.editor } }).then(function(editor) {
+    if(!editor) {
+      return reply(Boom.notFound());
+    }
 
-    res.send(editor);
-
-    return next();
+    reply(editor);
   }).catch(function(err) {
-    return next(new restify.InternalError(err.message));
+    reply(Boom.badImplementation());
   });
 };

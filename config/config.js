@@ -10,7 +10,9 @@ var config = {
   env: env,
   root: rootPath,
   server: {
-    name: 'restify'
+    name: 'webservice',
+    host: 'localhost',
+    port: 80
   },
   db: {
     name: 'userwebservice',
@@ -19,11 +21,11 @@ var config = {
     dialect: 'mysql',
     port: 3306
   },
-  controllers: {
-    path: rootPath + '/controllers'
-  },
-  models: {
-    path: rootPath + '/models'
+  paths: {
+    routes: rootPath + '/routes',
+    controllers: rootPath + '/controllers',
+    models: rootPath + '/models',
+    validators: rootPath + '/validators'
   }
 };
 
