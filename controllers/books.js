@@ -6,19 +6,19 @@ var Boom = require('Boom'),
 var db = require('../config/db');
 
 exports.listByAuthor = function(request, reply) {
-  request.query.author = request.params.id;
+  request.query.author = request.params.author;
 
   return exports.list(request, reply);
 };
 
 exports.listByEditor = function(request, reply) {
-  request.query.editor = request.params.id;
+  request.query.editor = request.params.editor;
 
   return exports.list(request, reply);
 };
 
 exports.list = function(request, reply) {
-  db.Book.findAll({ where: req.query }).then(function(books) {
+  db.Book.findAll({ where: request.query }).then(function(books) {
     reply(books);
   }).catch(function(err) {
     reply(Boom.badImplementation());
