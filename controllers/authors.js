@@ -43,7 +43,7 @@ exports.update = function(request, reply) {
       return reply(Boom.notFound());
     }
 
-    reply(author);
+    reply().code(204);
   }).catch(function(err) {
     reply(Boom.badImplementation());
   });
