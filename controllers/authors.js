@@ -29,7 +29,7 @@ exports.create = function(request, reply) {
   var author = request.payload;
 
   db.Author.create(author).then(function(author) {
-    res.send(201, author);
+    reply(author).code(201);
   }).catch(function(err) {
     reply(Boom.badImplementation());
   });

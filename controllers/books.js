@@ -41,7 +41,7 @@ exports.create = function(request, reply) {
   var book = request.payload;
 
   db.Book.create(book).then(function(book) {
-    reply(201, book);
+    reply(book).code(201);
   }).catch(function(err) {
     reply(Boom.badImplementation());
   });

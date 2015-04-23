@@ -29,7 +29,7 @@ exports.create = function(request, reply) {
   var editor = request.payload;
 
   db.Editor.create(editor).then(function(editor) {
-    reply(201, editor);
+    reply(editor).code(201);
   }).catch(function(err) {
     reply(Boom.badImplementation());
   });
