@@ -67,7 +67,7 @@ exports.delete = function(request, reply) {
       return reply(Boom.notFound());
     }
 
-    reply(book);
+    reply().code(204);
   }).catch(function(err) {
     reply(Boom.badImplementation());
   });
