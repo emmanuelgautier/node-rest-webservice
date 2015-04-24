@@ -3,7 +3,8 @@
 var Hapi    = require('hapi'),
     config  = require('./config/config'),
 
-    db = require('./config/db');
+    db = require('./config/db'),
+    validator = require('./config/validator');
 
 var server = new Hapi.Server();
 server.connection({
