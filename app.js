@@ -21,4 +21,6 @@ db.sequelize.sync().then(function() {
   server.start(function () {
       console.log('Server running at:', server.info.uri);
   });
+}).catch(function(err) {
+  console.error(err);
 });
