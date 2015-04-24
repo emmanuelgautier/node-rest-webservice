@@ -14,6 +14,7 @@ server.connection({
 
 require('./config/hapi')(server, config);
 require('./config/auth')(server, config);
+
 require(config.paths.routes)(server, config);
 
 db.sequelize.sync().then(function() {

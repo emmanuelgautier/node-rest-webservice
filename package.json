@@ -24,6 +24,9 @@
   "homepage": "https://github.com/emmanuelgautier/node-rest-webservice",
   "dependencies": {
     "boom": "^2.7.1",
+    "good": "^6.1.1",
+    "good-console": "^5.0.0",
+    "good-file": "^5.0.0",
     "hapi": "^8.4.0",
     "joi": "^6.2.0",
     "lodash": "^3.7.0",

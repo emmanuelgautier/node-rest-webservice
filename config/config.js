@@ -21,6 +21,13 @@ var config = {
     dialect: 'mysql',
     port: 3306
   },
+  logging: {
+    interval: 1000,
+    logDirPath: rootPath + '/logs',
+    logPrefix: 'log',
+    errorDirPath: rootPath + '/logs',
+    errorPrefix: 'error'
+  },
   paths: {
     routes: rootPath + '/routes',
     controllers: rootPath + '/controllers',
