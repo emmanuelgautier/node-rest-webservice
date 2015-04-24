@@ -19,7 +19,7 @@ var fs        = require('fs'),
 
 fs.readdirSync(config.paths.models)
   .filter(function(file) {
-    return (file.indexOf('.') !== 0) && (file !== "index.js");
+    return (file.indexOf('.') !== 0);
   })
   .forEach(function(file) {
     var model = sequelize['import'](path.join(config.paths.models, file));
