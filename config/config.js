@@ -31,6 +31,9 @@ var config = {
     errorDirPath: rootPath + '/logs',
     errorPrefix: 'error'
   },
+  caching: {
+    expiresIn: 60000
+  },
   paths: {
     routes: rootPath + '/routes',
     controllers: rootPath + '/controllers',

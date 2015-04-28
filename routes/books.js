@@ -14,6 +14,9 @@ var routes = [{
     handler: books.list,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         query: BookValidator.Schema
       }
@@ -34,6 +37,9 @@ var routes = [{
     handler: books.get,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         params: {
           books: Joi.number().integer().min(1)
@@ -71,6 +77,9 @@ var routes = [{
     handler: books.listByAuthor,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         params: {
           author: Joi.number().integer().min(1)
@@ -83,6 +92,9 @@ var routes = [{
     handler: books.listByEditor,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         params: {
           editor: Joi.number().integer().min(1)

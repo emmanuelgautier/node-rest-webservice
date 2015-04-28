@@ -14,6 +14,9 @@ var routes = [{
     handler: authors.list,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         query: AuthorValidator.Schema
       }
@@ -34,6 +37,9 @@ var routes = [{
     handler: authors.get,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         params: {
           author: Joi.number().integer().min(1)

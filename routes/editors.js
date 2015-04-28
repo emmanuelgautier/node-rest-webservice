@@ -14,6 +14,9 @@ var routes = [{
     handler: editors.list,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         query: EditorValidator.Schema
       }
@@ -34,6 +37,9 @@ var routes = [{
     handler: editors.get,
     config: {
       auth: 'bearer',
+      cache: {
+        expiresIn: config.caching.expiresIn
+      },
       validate: {
         params: {
           editor: Joi.number().integer().min(1)
