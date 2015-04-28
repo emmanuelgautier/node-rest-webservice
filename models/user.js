@@ -14,7 +14,12 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'user',
     timestamps: true,
     paranoid: true,
-    underscored: true
+    underscored: true,
+    classMethods: {
+      associate: function(models) {
+        User.hasOne(models.Token);
+      }
+    }
   });
 
   return User;

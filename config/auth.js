@@ -1,8 +1,7 @@
 'use strict';
 
 var Joi = require('joi'),
-    Boom = require('boom'),
-    uid = require('uid2');
+    Boom = require('boom');
 
 var db = require('./db');
 
@@ -16,14 +15,12 @@ module.exports = function(server, config) {
       accessTokenName: 'access_token',
       validateFunc: function(token, callback) {
 
-        db.Token.find({ where: { value: token }, include: [db.User] }).then(function(userToken) {
+        db.Token.find({ where: { value: token } }).then(function(userToken) {
           if(!userToken) {
-            callback(null, false);
+            return callback(null, false);
           }
 
-          console.log(userToken.User);
-
-          callback(null, true, { scope: 'user' });
+          callback(null, true, { scope: 'user', user: userToken.getUser() });
         }).catch(function(err) {
           console.log(err);
           callback(null, false);
