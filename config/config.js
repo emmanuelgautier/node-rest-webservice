@@ -9,8 +9,11 @@ var path      = require('path'),
 var config = {
   env: env,
   root: rootPath,
-  server: {
+  app: {
     name: 'webservice',
+    privateKey: 'secret'
+  },
+  server: {
     host: 'localhost',
     port: 80
   },

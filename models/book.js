@@ -27,9 +27,11 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: true,
     paranoid: true,
     underscored: true,
-    associate: function(models) {
-      Book.belongsTo(models.Author);
-      Book.belongsTo(models.Editor);
+    classMethods: {
+      associate: function(models) {
+        Book.belongsTo(models.Author);
+        Book.belongsTo(models.Editor);
+      }
     }
   });
 
