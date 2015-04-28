@@ -13,6 +13,7 @@ var routes = [{
     path: '/editors/',
     handler: editors.list,
     config: {
+      auth: 'bearer',
       validate: {
         query: EditorValidator.Schema
       }
@@ -22,6 +23,7 @@ var routes = [{
     path: '/editors/',
     handler: editors.create,
     config: {
+      auth: 'bearer',
       validate: {
         payload: EditorValidator.Required
       }
@@ -31,6 +33,7 @@ var routes = [{
     path: '/editors/{editor}',
     handler: editors.get,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           editor: Joi.number().integer().min(1)
@@ -42,6 +45,7 @@ var routes = [{
     path: '/editors/{editor}',
     handler: editors.update,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           editor: Joi.number().integer().min(1)
@@ -54,6 +58,7 @@ var routes = [{
     path: '/editors/{editor}',
     handler: editors.delete,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           editor: Joi.number().integer().min(1)

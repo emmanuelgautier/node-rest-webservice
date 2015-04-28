@@ -13,6 +13,7 @@ var routes = [{
     path: '/authors/',
     handler: authors.list,
     config: {
+      auth: 'bearer',
       validate: {
         query: AuthorValidator.Schema
       }
@@ -22,6 +23,7 @@ var routes = [{
     path: '/authors/',
     handler: authors.create,
     config: {
+      auth: 'bearer',
       validate: {
         payload: AuthorValidator.Required
       }
@@ -31,6 +33,7 @@ var routes = [{
     path: '/authors/{author}',
     handler: authors.get,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           author: Joi.number().integer().min(1)
@@ -42,6 +45,7 @@ var routes = [{
     path: '/authors/{author}',
     handler: authors.update,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           author: Joi.number().integer().min(1)
@@ -54,6 +58,7 @@ var routes = [{
     path: '/authors/{author}',
     handler: authors.delete,
     config: {
+      auth: 'bearer',
       validate: {
         params: {
           author: Joi.number().integer().min(1)
