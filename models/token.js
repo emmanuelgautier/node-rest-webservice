@@ -6,22 +6,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    user_id: {
+      type: DataTypes.INTEGER
     },
-    clientId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    client_id: {
+      type: DataTypes.INTEGER
     }
   }, {
     tableName: 'token',
     timestamps: true,
     paranoid: false,
     underscored: true,
-    associate: function(models) {
-      Token.belongsTo(models.User);
-      Token.belongsTo(models.Client);
+    classMethods: {
+      associate: function(models) {
+        Token.belongsTo(models.User, { as: 'User', foreignKey: 'user_id' });
+        Token.belongsTo(models.Client, { as: 'Client', foreignKey: 'client_id' });
+      }
     }
   });
 

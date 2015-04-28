@@ -7,8 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     }
   }, {
     tableName: 'client',
@@ -17,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     underscored: true,
     classMethods: {
       associate: function(models) {
-        Client.belongsTo(models.User);
+        Client.belongsTo(models.User, { as: 'User', foreignKey: 'user_id' });
       }
     }
   });
