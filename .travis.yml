@@ -8,6 +8,15 @@ node_js:
 
 sudo: false
 
+services:
+  - mysql
+
+before_script:
+  - mysql -e 'create database webservice;'
+
+env:
+  - NODE_ENV=test
+
 cache:
   directories:
     - node_modules
