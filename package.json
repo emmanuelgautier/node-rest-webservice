@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "A Restful WebService build with Node.js",
   "main": "app.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/lab/bin/lab -c -L",
+    "test-cover": "./node_modules/lab/bin/lab -c -r html -o ./test/artifacts/coverage.html && open ./tests/artifacts/coverage.html"
   },
   "repository": {
     "type": "git",
@@ -33,5 +35,9 @@
     "lodash": "^3.7.0",
     "mysql": "^2.5.2",
     "sequelize": "^2.0.3"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "lab": "^5.8.0"
   }
 }
