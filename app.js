@@ -24,3 +24,5 @@ db.sequelize.sync().then(function() {
 }).catch(function(err) {
   console.error(err);
 });
+
+module.exports = server;
