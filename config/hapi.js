@@ -30,4 +30,10 @@ module.exports = function(server, config) {
       console.error(err);
     }
   });
+
+  server.register({
+    register: require('lout')
+  }, function(err) {
+    console.error(err);
+  });
 };
