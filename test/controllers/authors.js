@@ -49,9 +49,9 @@ lab.experiment('Authors', function() {
 
       expect(response.statusCode).to.equal(201);
       expect(result).to.be.an.object();
-      expect(result.firstname).to.be.equal(options.payload.);
-      expect(result.lastname).to.be.equal('lastname');
-      expect(result.gender).to.be.equal('1');
+      expect(result.firstname).to.be.equal(options.payload.firstname);
+      expect(result.lastname).to.be.equal(options.payload.lastname);
+      expect(result.gender).to.be.equal(options.payload.gender);
 
       done();
     });
