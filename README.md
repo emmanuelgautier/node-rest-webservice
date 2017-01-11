@@ -57,7 +57,7 @@ Code | Message
 ---- | -------------
 200  | Ok
 201  | Created
-401  | InvalidArgumentError
+401  | Unauthorized
 404  | ResourceNotFoundError
 500  | InternalError
 
